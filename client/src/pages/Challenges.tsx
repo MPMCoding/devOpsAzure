@@ -47,7 +47,7 @@ export default function Challenges() {
     return (
       <Layout>
         <div className="min-h-screen bg-background">
-          <div className="max-w-4xl mx-auto px-8 py-12">
+          <div className="max-w-4xl mx-auto px-4 md:px-8 py-6 md:py-12">
             <Button
               variant="ghost"
               onClick={() => {
@@ -136,7 +136,7 @@ export default function Challenges() {
     return (
       <Layout>
         <div className="min-h-screen bg-background">
-          <div className="max-w-4xl mx-auto px-8 py-12">
+          <div className="max-w-4xl mx-auto px-4 md:px-8 py-6 md:py-12">
             <Button
               variant="ghost"
               onClick={() => {
@@ -167,7 +167,7 @@ export default function Challenges() {
               </div>
 
               <div className="mb-8">
-                <h2 className="text-xl font-semibold text-foreground mb-6">{question.text}</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">{question.text}</h2>
                 <div className="space-y-3">
                   {question.options.map((option, i) => (
                     <button
@@ -233,10 +233,10 @@ export default function Challenges() {
   return (
     <Layout>
       <div className="min-h-screen bg-background">
-        <div className="max-w-6xl mx-auto px-8 py-12">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 py-6 md:py-12">
           <div className="mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">Desafios</h1>
-            <p className="text-xl text-muted-foreground">
+            <h1 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Desafios</h1>
+            <p className="text-base md:text-lg text-muted-foreground">
               Teste seu conhecimento com quizzes interativos sobre cada tópico
             </p>
           </div>

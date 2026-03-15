@@ -31,36 +31,40 @@ export default function Topic() {
   return (
     <Layout>
       <div className="min-h-screen bg-background">
-        {/* Header */}
-        <div className="bg-card border-b border-border sticky top-0 z-10">
-          <div className="max-w-6xl mx-auto px-8 py-6">
-            <Button
-              variant="ghost"
-              onClick={() => setLocation('/')}
-              className="mb-4 text-muted-foreground hover:text-foreground"
-            >
-              <ChevronLeft size={20} className="mr-2" />
-              Voltar
-            </Button>
-            <div className="flex items-center gap-4">
+        {/* Header - Fixed on Mobile */}
+        <div className="bg-card border-b border-border fixed top-12 left-0 right-0 z-40 md:sticky md:top-0">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 py-3 md:py-5 pt-4 md:pt-5">
+            <div className="flex items-center gap-2 md:gap-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setLocation('/')}
+                className="p-1 text-muted-foreground hover:text-foreground flex-shrink-0 text-xs md:text-base"
+              >
+                <ChevronLeft size={18} className="mr-1" />
+                <span className="hidden sm:inline">Voltar</span>
+              </Button>
               <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                className="w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: module.color + '20', borderColor: module.color, borderWidth: '1px' }}
               >
-                <div style={{ color: module.color }} className="text-xl font-bold">
+                <div style={{ color: module.color }} className="text-sm md:text-base font-bold">
                   {params?.id}
                 </div>
               </div>
-              <div>
-                <h1 className="text-3xl font-bold text-foreground">{module.title}</h1>
-                <p className="text-muted-foreground">Apresentado por {module.presenter}</p>
+              <div className="min-w-0 flex-1">
+                <h1 className="text-sm md:text-2xl font-bold text-foreground truncate">{module.title}</h1>
+                <p className="text-xs text-muted-foreground">Apresentado por {module.presenter}</p>
               </div>
             </div>
           </div>
         </div>
 
+        {/* Spacer for fixed header on mobile */}
+        <div className="h-12 md:h-0" />
+
         {/* Content */}
-        <div className="max-w-6xl mx-auto px-8 py-12">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 py-6 md:py-12">
           <div className="grid grid-cols-1 gap-8">
             {module.sections.map((section) => {
               const IconComponent = (Icons as any)[section.icon] || Icons.BookOpen;
@@ -78,53 +82,14 @@ export default function Topic() {
                         <IconComponent size={24} style={{ color: module.color }} />
                       </div>
                       <div className="flex-1">
-                        <h2 className="text-2xl font-bold text-foreground">{section.title}</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-3">{section.title}</h2>
+                        <p className="text-muted-foreground leading-relaxed">{section.content}</p>
                       </div>
-                    </div>
-
-                    <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                      {section.content}
-                    </p>
-
-                    <div className="space-y-3">
-                      <h3 className="text-sm font-semibold text-accent uppercase tracking-wide">Pontos-chave</h3>
-                      <ul className="space-y-2">
-                        {section.keyPoints.map((point, i) => (
-                          <li key={i} className="flex items-start gap-3 text-foreground">
-                            <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: module.color }} />
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
                     </div>
                   </div>
                 </div>
               );
             })}
-          </div>
-
-          {/* Navigation */}
-          <div className="flex justify-between mt-12 pt-8 border-t border-border">
-            <Button
-              variant="outline"
-              onClick={() => {
-                const prevId = parseInt(params?.id) - 1;
-                if (prevId >= 1) setLocation(`/topic/${prevId}`);
-              }}
-              disabled={parseInt(params?.id) === 1}
-            >
-              ← Tópico Anterior
-            </Button>
-            <Button
-              onClick={() => {
-                const nextId = parseInt(params?.id) + 1;
-                if (nextId <= 4) setLocation(`/topic/${nextId}`);
-              }}
-              disabled={parseInt(params?.id) === 4}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground"
-            >
-              Próximo Tópico →
-            </Button>
           </div>
         </div>
       </div>

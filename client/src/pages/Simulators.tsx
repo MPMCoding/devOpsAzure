@@ -85,7 +85,7 @@ export default function Simulators() {
     return (
       <Layout>
         <div className="min-h-screen bg-background">
-          <div className="max-w-4xl mx-auto px-8 py-12">
+          <div className="max-w-4xl mx-auto px-4 md:px-8 py-6 md:py-12">
             <Button
               variant="ghost"
               onClick={() => setSelectedSimulator(null)}
@@ -95,9 +95,9 @@ export default function Simulators() {
               Voltar aos Simuladores
             </Button>
 
-            <div className="bg-card border border-border rounded-lg p-8">
-              <h1 className="text-3xl font-bold text-foreground mb-2">Simulador de Pipeline</h1>
-              <p className="text-muted-foreground mb-8">
+            <div className="bg-card border border-border rounded-lg p-4 md:p-8">
+              <h1 className="text-xl md:text-3xl font-bold text-foreground mb-2">Simulador de Pipeline</h1>
+              <p className="text-sm md:text-base text-muted-foreground mb-8">
                 Veja como funciona o processo de CI/CD no Azure DevOps
               </p>
 
@@ -172,9 +172,9 @@ export default function Simulators() {
               Voltar aos Simuladores
             </Button>
 
-            <div className="bg-card border border-border rounded-lg p-8 mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-2">Simulador de Board</h1>
-              <p className="text-muted-foreground">
+            <div className="bg-card border border-border rounded-lg p-4 md:p-8">
+              <h1 className="text-xl md:text-3xl font-bold text-foreground mb-2">Simulador de Board</h1>
+              <p className="text-sm md:text-base text-muted-foreground mb-8">
                 Arraste as tarefas entre as colunas para simular o fluxo de trabalho
               </p>
             </div>
@@ -231,10 +231,10 @@ export default function Simulators() {
   return (
     <Layout>
       <div className="min-h-screen bg-background">
-        <div className="max-w-6xl mx-auto px-8 py-12">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 py-6 md:py-12">
           <div className="mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">Simuladores Práticos</h1>
-            <p className="text-xl text-muted-foreground">
+            <h1 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Simuladores Práticos</h1>
+            <p className="text-base md:text-lg text-muted-foreground">
               Experimente na prática como funcionam os principais processos do Azure DevOps
             </p>
           </div>
@@ -269,9 +269,9 @@ export default function Simulators() {
             ))}
           </div>
 
-          <div className="mt-12 bg-muted/50 border border-border rounded-lg p-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">💡 Dica</h2>
-            <p className="text-muted-foreground">
+          <div className="mt-12 bg-muted/50 border border-border rounded-lg p-4 md:p-8">
+            <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">💡 Dica</h2>
+            <p className="text-sm md:text-base text-muted-foreground">
               Os simuladores são ferramentas interativas para você entender melhor como funcionam os processos do Azure DevOps. Experimente diferentes cenários e veja os resultados em tempo real!
             </p>
           </div>
