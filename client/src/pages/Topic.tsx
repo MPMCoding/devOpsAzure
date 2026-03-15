@@ -1,5 +1,5 @@
 import { useRoute } from 'wouter';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
 import { modules } from '@/lib/courseData';
@@ -13,7 +13,8 @@ export default function Topic() {
   if (!match) return null;
 
   const topicId = `topic-${params?.id}`;
-  const module = modules.find(m => m.id === topicId);
+  const currentTopicIndex = modules.findIndex(m => m.id === topicId);
+  const module = modules[currentTopicIndex];
 
   if (!module) {
     return (
@@ -28,6 +29,32 @@ export default function Topic() {
     );
   }
 
+  // Lógica de navegação
+  const navigationSequence = [
+    { path: '/topic/1', label: 'Tópico 1' },
+    { path: '/topic/2', label: 'Tópico 2' },
+    { path: '/topic/3', label: 'Tópico 3' },
+    { path: '/topic/4', label: 'Tópico 4' },
+    { path: '/simulators', label: 'Simuladores' },
+    { path: '/challenges', label: 'Desafios' },
+  ];
+
+  const currentIndex = navigationSequence.findIndex(item => item.path === `/topic/${params?.id}`);
+  const hasPrevious = currentIndex > 0;
+  const hasNext = currentIndex < navigationSequence.length - 1;
+
+  const handlePrevious = () => {
+    if (hasPrevious) {
+      setLocation(navigationSequence[currentIndex - 1].path);
+    }
+  };
+
+  const handleNext = () => {
+    if (hasNext) {
+      setLocation(navigationSequence[currentIndex + 1].path);
+    }
+  };
+
   return (
     <Layout>
       <div className="min-h-screen bg-background">
@@ -38,11 +65,12 @@ export default function Topic() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setLocation('/')}
-                className="p-1 text-muted-foreground hover:text-foreground flex-shrink-0 text-xs md:text-base"
+                onClick={handlePrevious}
+                disabled={!hasPrevious}
+                className="p-1 text-muted-foreground hover:text-foreground flex-shrink-0 text-xs md:text-base disabled:opacity-50"
               >
                 <ChevronLeft size={18} className="mr-1" />
-                <span className="hidden sm:inline">Voltar</span>
+                <span className="hidden sm:inline">Anterior</span>
               </Button>
               <div
                 className="w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center flex-shrink-0"
@@ -56,6 +84,16 @@ export default function Topic() {
                 <h1 className="text-sm md:text-2xl font-bold text-foreground truncate">{module.title}</h1>
                 <p className="text-xs text-muted-foreground">Apresentado por {module.presenter}</p>
               </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleNext}
+                disabled={!hasNext}
+                className="p-1 text-muted-foreground hover:text-foreground flex-shrink-0 text-xs md:text-base disabled:opacity-50"
+              >
+                <span className="hidden sm:inline">Próximo</span>
+                <ChevronRight size={18} className="ml-1" />
+              </Button>
             </div>
           </div>
         </div>
